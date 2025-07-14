@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Oswald, Quicksand } from "next/font/google";
 import "./globals.css";
 import Navabar from "./components/Navabar";
 import Footer from "./components/Footer";
+import {StoreProvider} from './store/StoreProvider'
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -37,9 +38,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${oswald.variable} ${quicksand.variable} antialiased`}
       >
-        <Navabar/>
-        {children}
-        <Footer/>
+        <StoreProvider>
+          <Navabar/>
+          {children}
+          <Footer/>
+        </StoreProvider>
       </body>
     </html>
   );

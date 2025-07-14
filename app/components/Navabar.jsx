@@ -1,8 +1,22 @@
-import React from 'react';
+'use client'
+import React, {useState, useEffect} from 'react';
 import Timalytics from '../../public/Timalytics.svg'
 import Image from 'next/image';
+import useDebounce from '../hooks/useDebounce';
+import {useDispatch} from 'react-redux';
+import {searchActions} from '../store/searchSlice';
 
 const Navabar = () => {
+    const [search, setSearch] = useState('');
+    const debounce = useDebounce(search,500);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(searchActions.setSearch(debounce))
+    },[debounce])
+
+    //console.log(search);
+    //console.log("debounce", debounce);
   return (
     <nav 
         className='
@@ -29,6 +43,7 @@ const Navabar = () => {
                 '
                 type='text'
                 placeholder='search'
+                onChange={(e) => setSearch(e.target.value)}
             />
         </div>
     </nav>

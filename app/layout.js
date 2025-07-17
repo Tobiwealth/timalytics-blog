@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${oswald.variable} ${quicksand.variable} antialiased`}
+        className={`${oswald.variable} ${quicksand.variable} antialiased bg-white`}
       >
         <StoreProvider>
           <Navabar/>
